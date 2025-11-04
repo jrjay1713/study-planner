@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Planner</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-blue': '#4F46E5',
+                        'secondary-gray': '#E5E7EB',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <script type="module" src="script.js"></script>
+
+</head>
+<body class="bg-gray-50 min-h-screen p-4 flex items-center justify-center font-sans">
+
+    <div class="w-full max-w-4xl space-y-8">
+        <header class="text-center">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">🧠 AI Study Planner</h1>
+            <p class="text-lg text-gray-600">Enter your goal, and let the AI build your actionable schedule.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="card bg-white p-6 rounded-xl border border-gray-200">
+                <h2 class="text-2xl font-semibold text-primary-blue mb-4">Set Your Study Parameters</h2>
+
+                <div class="mb-4">
+                    <label for="study-goal" class="block text-sm font-medium text-gray-700 mb-1">Study Goal / Topic (Be Specific!)</label>
+                    <textarea id="study-goal" rows="4" placeholder="e.g., 'Master the principles of Object-Oriented Programming (OOP) in Python including inheritance and polymorphism' or 'Review chapters 1-5 of US History for the midterm exam.'"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary-blue focus:border-primary-blue transition duration-150 text-sm"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label for="total-days" class="block text-sm font-medium text-gray-700 mb-1">Total Days to Study</label>
+                        <input type="number" id="total-days" value="5" min="1" max="30"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary-blue focus:border-primary-blue transition duration-150 text-sm">
+                    </div>
+                    <div>
+                        <label for="hours-per-day" class="block text-sm font-medium text-gray-700 mb-1">Hours Per Day</label>
+                        <input type="number" id="hours-per-day" value="2" step="0.5" min="0.5" max="10"
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary-blue focus:border-primary-blue transition duration-150 text-sm">
+                    </div>
+                </div>
+
+                <button id="generate-button" onclick="generatePlan()"
+                    class="w-full bg-primary-blue hover:bg-indigo-700 text-white font-bold py-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50 flex items-center justify-center">
+                    <svg id="button-icon" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span>Generate Study Plan</span>
+                </button>
+
+                <p id="auth-status" class="text-xs text-center mt-3 text-gray-500">Initializing...</p>
+            </div>
+
+            <div class="card bg-white p-6 rounded-xl border border-gray-200">
+                <h2 class="text-2xl font-semibold text-primary-blue mb-4">Your AI-Generated Schedule</h2>
+                <div id="plan-output" class="h-96 overflow-y-auto bg-secondary-gray p-4 rounded-lg text-gray-800 whitespace-pre-wrap text-sm leading-relaxed">
+                    Enter your parameters and click "Generate" to create your personalized study plan.
+                </div>
+            </div>
+        </div>
+        <div id="sources-container" class="mt-4 p-4 bg-gray-100 rounded-xl text-sm hidden">
+            <h3 class="font-semibold text-gray-700 mb-2">Sources Used:</h3>
+            <ul id="sources-list" class="list-disc list-inside text-gray-600 space-y-1"></ul>
+        </div>
+    </div>
+</body>
+</html>

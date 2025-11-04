@@ -1,0 +1,13 @@
+/* Custom box-shadow for cards */
+.card {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Custom scrollbar for output */
+#plan-output::-webkit-scrollbar {
+    width: 8px;
+}
+#plan-output::-webkit-scrollbar-thumb {
+    background-color: #A5B4FC; /* Indigo-200 */
+    border-radius: 4px;
+}
